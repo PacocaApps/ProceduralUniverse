@@ -25,7 +25,6 @@ void display(){
 
 
 
-
 fill(255,0,0);
 rect(x,y,scl,scl);
 fill(255,255,0);
