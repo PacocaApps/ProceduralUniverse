@@ -3,6 +3,8 @@ import processing.data.*;
 import processing.event.*; 
 import processing.opengl.*; 
 
+import queasycam.*; 
+
 import java.util.HashMap; 
 import java.util.ArrayList; 
 import java.io.File; 
@@ -15,7 +17,7 @@ import java.io.IOException;
 public class ProceduralUniverse extends PApplet {
 
 // VARIABLES DEFINITION
-int page = 1;
+int page = 0;
 int timeVar = 0;
 int starNumber = 100;
 int selectedStar;
@@ -302,6 +304,7 @@ page = 1;
 
 
 }
+
 public void Start(int diminish){
   background(0);
 
@@ -406,32 +409,136 @@ rect(x+scl,y+scl,scl,scl);
 
 
 }
+
+
+QueasyCam cam;
+
+
+int cols, rows;
+int scl = 20;
+int w = 2000;
+int h = 1600;
+float terrainL = 0.2f;
+float flying = 0;
+
+float[][] terrain;
+String planetType;
 public void setupPlanetSeed(int number,String type){
-
-
+  planetType = type;
+  cam = new QueasyCam(this);
+  	cam.speed = 5;              // default is 3
+  	cam.sensitivity = 0.5f;
+  cols = w / scl;
+  rows = h/ scl;
+  terrain = new float[cols][rows];
 
 }
 public void drawPlanet(){
-background(0);
-fill(255);
+//  flying -= 0.1;
+
+   float yoff = 0;
+   for (int y = 0; y < rows; y++) {
+     float xoff = 0;
+
+     for (int x = 0; x < cols; x++) {
+
+       if(planetType == "Cold"){
+           terrainL = 10;
+       }else if(planetType == "Barren"){
+          terrainL = 0.08f;
+
+       }else if(planetType == "Terran"){
+
+      terrainL = 0.1f;
+       }else if(planetType == "Lava"){
+        terrainL = 0.2f;
+
+       }
+
+
+
+       terrain[x][y] = map(noise(xoff, yoff), 0, 1, -100, 100);
+       xoff += terrainL;
+     }
+     yoff += terrainL;
+   }
+
+
+
+   background(0,255,255);
+   // stroke(255);
+noStroke();
+
+   translate(width/2, height/2+50);
+   rotateX(PI/3);
+   translate(-w/2, -h/2);
+
+
+   for (int y = 0; y < rows-1; y++) {
+
+
+     beginShape(TRIANGLE_STRIP);
+     for (int x = 0; x < cols; x++) {
 
 
 
 
-  beginShape();
-  vertex(30, 20, -50);
-  vertex(85, 20, -50);
-  vertex(85, 75, -50);
-
-  endShape();
 
 
-  beginShape();
 
-  vertex(85, 20, -50);
-  vertex(85, 75, -50);
-  vertex(30, 75, -50);
-  endShape();
+       if(planetType == "Cold"){
+
+fill(0,100,100);
+
+
+       }else if(planetType == "Barren"){
+                    if(terrain[x][y] > 40){
+
+                                 fill(150,0,0);
+                     }else if(terrain[x][y] < 40 && terrain[x][y] > 0){
+                      fill(10*terrain[x][y],50,0);
+                      }else{fill(255,170,0);}
+
+                      // END OF Barren TYPE
+
+       }else if(planetType == "Terran"){
+
+                  if(terrain[x][y]> 40){
+
+                    fill(170,170,170);
+                  } else if(terrain[x][y] < 40 && terrain[x][y] > 0){
+
+                    fill(50,10*terrain[x][y],0);
+                  }else if(terrain[x][y]<0){
+                    fill(0,0,255);
+                  }
+
+
+
+       }else if(planetType == "Lava"){
+fill(255,0,0);
+
+       }
+
+
+
+
+
+
+
+
+
+
+
+
+
+       vertex(x*scl, y*scl, terrain[x][y]);
+       vertex(x*scl, (y+1)*scl, terrain[x][y+1]);
+       //rect(x*scl, y*scl, scl, scl);
+     }
+     endShape(CLOSE);
+   }
+
 
 }
 public void startStarmap(){
