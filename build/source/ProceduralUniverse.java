@@ -15,10 +15,10 @@ import java.io.IOException;
 public class ProceduralUniverse extends PApplet {
 
 // VARIABLES DEFINITION
-int page = 1;
+int page = 0;
 int timeVar = 0;
 int starNumber = 100;
-
+int selectedStar;
 Star[] starArray = new Star[starNumber];
 
 
@@ -48,6 +48,10 @@ Start(timeVar);
 if(page == 1){
 startStarmap();
 
+}
+if(page == 2){
+
+startSystemMap(selectedStar);
 }
 
 
@@ -143,6 +147,95 @@ ellipse(x,y,size,size);
 
 }
 }
+int r;
+int g;
+int b;
+int r1;
+int g1;
+int b1;
+
+public void startSystemMap(int star1){
+
+String starType = starArray[star1].starType;
+background(0);
+
+
+
+
+if(starType == "Brown Dwarf"){
+  r = 255;
+  g = 127;
+  b = 0;
+
+  r1 = 255;
+  g1 = 127;
+  b1 = 0;
+
+}else if(starType == "Red Dwarf"){
+r = 255;
+g = 0;
+b = 0;
+
+r1 = 255;
+g1 = 0;
+b1 = 0;
+}else if(starType == "Main Sequence K"){
+r = 255;
+g = 255;
+b = 255;
+
+r1 = 255;
+g1 = 255;
+b1 = 255;
+}else if(starType == "Main Sequence G"){
+
+r = 255;
+g = 170;
+b = 0;
+r1 = 255;
+g1 = 255;
+b1 = 140;
+}else if(starType == "Red Giant"){
+r = 255;
+g = 0;
+b = 0;
+
+r1 = 255;
+g1 = 140;
+b1 = 140;
+}else if(starType == "Blue Giant"){
+r = 0;
+g = 170;
+b = 255;
+
+r1 = 255;
+g1 = 255;
+b1 = 255;
+
+}
+
+
+
+
+fill(r,g,b);
+
+
+
+
+ellipse(width/2,height/2,50,50);
+
+
+
+
+
+
+
+
+
+
+
+
+}
 public void Start(int diminish){
   background(0);
 
@@ -175,6 +268,14 @@ if(mouseY > ys - scl && mouseY < ys + scl){
    fill(255);
    textSize(48);
    text(starArray[i].starType+" Has: "+starArray[i].numPlanets+" planets",width/20,height/19);
+   if(mousePressed == true){
+
+
+selectedStar = i;
+page = 2;
+
+
+   }
  }
   }
 
@@ -190,14 +291,6 @@ if(mouseY > ys - scl && mouseY < ys + scl){
 
 
  image(img, width/2-200, 0,400,250);
-
-
-
-
-
-
-
-
 
 
 

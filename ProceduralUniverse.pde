@@ -1,8 +1,8 @@
 // VARIABLES DEFINITION
-int page = 1;
+int page = 0;
 int timeVar = 0;
 int starNumber = 100;
-
+int selectedStar;
 Star[] starArray = new Star[starNumber];
 
 
@@ -32,6 +32,10 @@ Start(timeVar);
 if(page == 1){
 startStarmap();
 
+}
+if(page == 2){
+
+startSystemMap(selectedStar);
 }
 
 

@@ -12,6 +12,14 @@ if(mouseY > ys - scl && mouseY < ys + scl){
    fill(255);
    textSize(48);
    text(starArray[i].starType+" Has: "+starArray[i].numPlanets+" planets",width/20,height/19);
+   if(mousePressed == true){
+
+
+selectedStar = i;
+page = 2;
+
+
+   }
  }
   }
 
@@ -27,14 +35,6 @@ if(mouseY > ys - scl && mouseY < ys + scl){
 
 
  image(img, width/2-200, 0,400,250);
-
-
-
-
-
-
-
-
 
 
 
