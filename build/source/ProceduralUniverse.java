@@ -20,7 +20,7 @@ int timeVar = 0;
 int starNumber = 100;
 int selectedStar;
 Star[] starArray = new Star[starNumber];
-
+Planet[] planetArray;
 
 
 
@@ -154,12 +154,37 @@ int r1;
 int g1;
 int b1;
 
+
+
+
+
+public void setupsytemMap(int number){
+
+  planetArray = new Planet[number];
+  for(int y  = 0; y < number; y++){
+    planetArray[y] = new Planet();
+
+
+
+  }
+}
+
+
+
+
+
+
 public void startSystemMap(int star1){
 
 String starType = starArray[star1].starType;
+int planetNum = starArray[star1].numPlanets;
+
 background(0);
 
+for(int y  = 0; y < planetNum; y++){
 
+  planetArray[y].display();
+}
 
 
 if(starType == "Brown Dwarf"){
@@ -254,6 +279,50 @@ fill(0,255,255,diminish-300);
 }
 
 }
+class Planet{
+
+
+String[] planetTypes = {"Cold","Barren","Terran","Lava"};
+int rdn = floor(random(0,planetTypes.length));
+String planetType = planetTypes[rdn];
+float scl = 5;
+float x = random(0,width);
+float y = random(0,height);
+
+
+
+public void Planet(){
+
+
+
+}
+
+public void display(){
+
+
+
+
+
+
+
+
+
+fill(255,0,0);
+rect(x,y,scl,scl);
+fill(255,255,0);
+rect(x+scl,y,scl,scl);
+fill(255,0,255);
+rect(x,y+scl,scl,scl);
+fill(0,255,0);
+rect(x+scl,y+scl,scl,scl);
+}
+
+
+
+
+
+
+}
 public void startStarmap(){
   PImage img;
   img = loadImage("limg.png");
@@ -270,6 +339,7 @@ if(mouseY > ys - scl && mouseY < ys + scl){
    text(starArray[i].starType+" Has: "+starArray[i].numPlanets+" planets",width/20,height/19);
    if(mousePressed == true){
 
+     setupsytemMap(starArray[i].numPlanets);
 
 selectedStar = i;
 page = 2;

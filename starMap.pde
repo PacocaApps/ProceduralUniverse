@@ -14,6 +14,7 @@ if(mouseY > ys - scl && mouseY < ys + scl){
    text(starArray[i].starType+" Has: "+starArray[i].numPlanets+" planets",width/20,height/19);
    if(mousePressed == true){
 
+     setupsytemMap(starArray[i].numPlanets);
 
 selectedStar = i;
 page = 2;

@@ -4,7 +4,7 @@ int timeVar = 0;
 int starNumber = 100;
 int selectedStar;
 Star[] starArray = new Star[starNumber];
-
+Planet[] planetArray;
 
 
 

@@ -5,12 +5,37 @@ int r1;
 int g1;
 int b1;
 
+
+
+
+
+void setupsytemMap(int number){
+
+  planetArray = new Planet[number];
+  for(int y  = 0; y < number; y++){
+    planetArray[y] = new Planet();
+
+
+
+  }
+}
+
+
+
+
+
+
 void startSystemMap(int star1){
 
 String starType = starArray[star1].starType;
+int planetNum = starArray[star1].numPlanets;
+
 background(0);
 
+for(int y  = 0; y < planetNum; y++){
 
+  planetArray[y].display();
+}
 
 
 if(starType == "Brown Dwarf"){
