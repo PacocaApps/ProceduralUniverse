@@ -32,10 +32,6 @@ int planetNum = starArray[star1].numPlanets;
 
 background(0);
 
-for(int y  = 0; y < planetNum; y++){
-
-  planetArray[y].display();
-}
 
 
 if(starType == "Brown Dwarf"){
@@ -101,12 +97,52 @@ fill(r,g,b);
 ellipse(width/2,height/2,50,50);
 
 
+fill(255,0,0);
+rect(width-50,0,100,100);
+
+
+for(int y  = 0; y < planetNum; y++){
+
+  planetArray[y].display();
+
+
+
+  float scl = planetArray[y].scl;
+  float xs = planetArray[y].x;
+  float ys = planetArray[y].y;
+  if(mouseX > xs - 4*scl && mouseX < xs + 4*scl){
+  if(mouseY > ys - 4*scl && mouseY < ys + 4*scl){
+fill(255);
+text("World Type: "+ planetArray[y].planetType,width/9,height/8);
+//CALL PLANET GENERATION MODULE
+if(mousePressed == true){
+setupPlanetSeed(y,planetArray[y].planetType);
+page = 3;
 
 
 
 
+}
+  }
+}
 
 
+
+}
+
+
+
+if(mousePressed == true){
+
+if(mouseX > width-100 && mouseX < width){
+if(mouseY > 0 && mouseY < 100){
+page = 1;
+
+}
+
+}
+
+}
 
 
 

@@ -1,5 +1,5 @@
 // VARIABLES DEFINITION
-int page = 0;
+int page = 1;
 int timeVar = 0;
 int starNumber = 100;
 int selectedStar;
@@ -10,7 +10,7 @@ Planet[] planetArray;
 
 void setup(){
 rectMode(CENTER);
-fullScreen();
+fullScreen(P3D);
 
 for(int i = 0; i < starArray.length;i++){
 starArray[i] = new Star();
@@ -36,6 +36,11 @@ startStarmap();
 if(page == 2){
 
 startSystemMap(selectedStar);
+}
+if(page == 3){
+
+drawPlanet();
+
 }
 
 
