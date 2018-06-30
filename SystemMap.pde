@@ -116,7 +116,7 @@ fill(255);
 text("World Type: "+ planetArray[y].planetType,width/9,height/8);
 //CALL PLANET GENERATION MODULE
 if(mousePressed == true){
-setupPlanetSeed(y,planetArray[y].planetType);
+setupPlanetSeed(y,planetArray[y].planetType,planetArray[y].brr,planetArray[y].brg,planetArray[y].brb);
 page = 3;
 
 
