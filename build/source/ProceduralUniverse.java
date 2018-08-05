@@ -17,7 +17,7 @@ import java.io.IOException;
 public class ProceduralUniverse extends PApplet {
 
 // VARIABLES DEFINITION
-int page = 1;
+int page = 0;
 int timeVar = 0;
 int starNumber = 100;
 int selectedStar;
@@ -353,6 +353,11 @@ fill(0,255,255,diminish-300);
 }
 
 }
+public void keyPressed() {
+  if(page == 0){
+page = 1;
+}
+}
 class Planet{
 
 
@@ -499,6 +504,7 @@ backgroundColorB = 0;
         backgroundColorR = 0;
         backgroundColorG = 150;
         backgroundColorB = 190;
+        limit = 600;
 
       }else if(planetType == "Lava"){
        terrainL = 10;
@@ -564,8 +570,10 @@ vertex(0,height*1000,-10);
 
 
        if(planetType == "Cold"){
-
-fill(0,100,100);
+if(terrain[x][y] > 100){
+  fill(240,240,240);
+}
+fill(0,terrain[x][y],100);
 
 
        }else if(planetType == "Barren"){
@@ -591,10 +599,12 @@ fill(0,100,100);
        }else if(planetType == "Terran"){
 
 
-                  if(terrain[x][y]> 40){
+                  if(terrain[x][y]> 200){
 
-                    fill(170,170,170);
-                  } else if(terrain[x][y] < 40 && terrain[x][y] > 0){
+                    fill(240,240,240);
+                  }else if(terrain[x][y] < 200 && terrain[x][y] > 100){
+  fill(terrain[x][y],terrain[x][y],terrain[x][y]);
+                    } else if(terrain[x][y] < 100 && terrain[x][y] > 0){
 
                     fill(50,10*terrain[x][y],0);
                   }else if(terrain[x][y] < 0 && terrain[x][y] > -20){
@@ -625,8 +635,6 @@ fill(0,100,100);
 
 
 
-
-
        }
 
 
@@ -650,7 +658,7 @@ fill(0,100,100);
    //translate(cam.position.x+1000,cam.position.z+1000,cam.position.y+1000);
    //rotateX(cam.tilt);
    for(int i = 0;i < numEnemy;i++){
-   enemyArray[i].display();
+  // enemyArray[i].display();
 
    }
 

@@ -16,3 +16,8 @@ fill(0,255,255,diminish-300);
 }
 
 }
+void keyPressed() {
+  if(page == 0){
+page = 1;
+}
+}

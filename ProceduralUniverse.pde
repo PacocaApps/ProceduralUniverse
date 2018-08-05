@@ -1,5 +1,5 @@
 // VARIABLES DEFINITION
-int page = 1;
+int page = 0;
 int timeVar = 0;
 int starNumber = 100;
 int selectedStar;
